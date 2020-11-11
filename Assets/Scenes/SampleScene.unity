@@ -226,7 +226,7 @@ MonoBehaviour:
   placeablePrefabs:
   - {fileID: 2669296303021319845, guid: 9aac00cbc1de046dab1ef15b0332c7ac, type: 3}
   - {fileID: 2669296303021319845, guid: a6bc2c9e2fc724cd686402f600525bf1, type: 3}
-  - {fileID: 346223151705992279, guid: 7f12650b28e6d48cfbac831105639fea, type: 3}
+  - {fileID: 4054861273456748149, guid: 5d97fc12a553d0c4baad5a1788b5641d, type: 3}
 --- !u!1 &223974226
 GameObject:
   m_ObjectHideFlags: 0
