@@ -24,7 +24,7 @@ public class FixedTracker : MonoBehaviour
     private void OnEnable() {
         trackedImageManager.trackedImagesChanged += ImageChanged;
     }
-    private void ObnDisable() {
+    private void OnDisable() {
         trackedImageManager.trackedImagesChanged -= ImageChanged;
     }
 
