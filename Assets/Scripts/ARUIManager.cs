@@ -3,43 +3,70 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
+using TMPro;
 
 public class ARUIManager : MonoBehaviour
 {
-    public Color offColor, onColor;
     public GameObject videoPlayer;
-    private VideoPlayer mVideoPlayer;
-    private RawImage mRawImage;
+    public GameObject reasonBox;
 
-    public bool turnOn = false;
-    private bool oldVal = true;
+    public string reasonBoxText;
+    private TMP_Text reasonBoxTMP;
+
+
+    public GameObject moreInfoButton;
+    public GameObject moreInfoBox;
+
     // Start is called before the first frame update
     void Start()
     {
-        mVideoPlayer = videoPlayer.GetComponent<VideoPlayer>();
-        mRawImage = videoPlayer.GetComponent<RawImage>();
+        reasonBoxTMP = reasonBox.GetComponentInChildren<TMP_Text>();
+        reasonBoxTMP.text = reasonBoxText;
+            videoPlayer.SetActive(true);
+            reasonBox.SetActive(true);
+            moreInfoButton.SetActive(false);
+            moreInfoBox.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(turnOn != oldVal) {
-            oldVal = turnOn;
-            ToggleVideoPlayer(turnOn);
-        }
+
     }
 
-    void ToggleVideoPlayer(bool turnOn)
+    public void ToggleVideoPlayer(bool turnOn)
     {
         if (turnOn)
         {
-            mRawImage.color = offColor;
-            mVideoPlayer.Play();
+            videoPlayer.SetActive(true);
+            reasonBox.SetActive(true);
+            moreInfoButton.SetActive(false);
+            moreInfoBox.SetActive(false);
         }
         else
         {
-            mRawImage.color = onColor;
-            mVideoPlayer.Stop();
+            videoPlayer.SetActive(false);
+            reasonBox.SetActive(false);
+            moreInfoButton.SetActive(true);
+            moreInfoBox.SetActive(false);
+        }
+    }
+
+    public void ToggleMoreInfo(bool turnOn)
+    {
+        if (turnOn)
+        {
+            videoPlayer.SetActive(false);
+            reasonBox.SetActive(false);
+            moreInfoButton.SetActive(false);
+            moreInfoBox.SetActive(true);
+        }
+        else
+        {
+            videoPlayer.SetActive(false);
+            reasonBox.SetActive(false);
+            moreInfoButton.SetActive(true);
+            moreInfoBox.SetActive(false);
         }
     }
 }
