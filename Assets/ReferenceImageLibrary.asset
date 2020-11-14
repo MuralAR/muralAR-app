@@ -16,26 +16,6 @@ MonoBehaviour:
   m_GuidHigh: 4638680983580001175
   m_Images:
   - m_SerializedGuid:
-      m_GuidLow: 5479125867300473254
-      m_GuidHigh: 9105296262144399516
-    m_SerializedTextureGuid:
-      m_GuidLow: 4958354232202338391
-      m_GuidHigh: 15518769719690796347
-    m_Size: {x: 0.054, y: 0.085482895}
-    m_SpecifySize: 1
-    m_Name: key
-    m_Texture: {fileID: 2800000, guid: 58f9a0579ce744cf3b1d428dd6be5dd7, type: 3}
-  - m_SerializedGuid:
-      m_GuidLow: 5394685594307384227
-      m_GuidHigh: 12131037722349378948
-    m_SerializedTextureGuid:
-      m_GuidLow: 1457335872239482609
-      m_GuidHigh: 15555615298565992266
-    m_Size: {x: 0.054, y: 0.08441302}
-    m_SpecifySize: 1
-    m_Name: lock
-    m_Texture: {fileID: 2800000, guid: 2744b6f17f4114394a6fa865b2a5e0d7, type: 3}
-  - m_SerializedGuid:
       m_GuidLow: 5719338437916551008
       m_GuidHigh: 10236652908254104451
     m_SerializedTextureGuid:
