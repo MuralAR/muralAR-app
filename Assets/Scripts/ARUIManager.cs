@@ -8,6 +8,8 @@ using TMPro;
 public class ARUIManager : MonoBehaviour
 {
     public GameObject videoPlayer;
+    public GameObject mapImage;
+    public GameObject magicIcon;
     public GameObject reasonBox;
 
     public string reasonBoxText;
@@ -22,16 +24,17 @@ public class ARUIManager : MonoBehaviour
     {
         reasonBoxTMP = reasonBox.GetComponentInChildren<TMP_Text>();
         reasonBoxTMP.text = reasonBoxText;
-            videoPlayer.SetActive(true);
-            reasonBox.SetActive(true);
-            moreInfoButton.SetActive(false);
-            moreInfoBox.SetActive(false);
+        videoPlayer.SetActive(true);
+        reasonBox.SetActive(true);
+        moreInfoButton.SetActive(false);
+        moreInfoBox.SetActive(false);
+        mapImage.SetActive(false);
+        magicIcon.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public void ToggleVideoPlayer(bool turnOn)
@@ -42,9 +45,37 @@ public class ARUIManager : MonoBehaviour
             reasonBox.SetActive(true);
             moreInfoButton.SetActive(false);
             moreInfoBox.SetActive(false);
+            mapImage.SetActive(false);
+            magicIcon.SetActive(false);
         }
         else
         {
+            videoPlayer.SetActive(false);
+            reasonBox.SetActive(false);
+            moreInfoButton.SetActive(true);
+            moreInfoBox.SetActive(false);
+            mapImage.SetActive(false);
+            magicIcon.SetActive(false);
+        }
+    }
+
+    public void OpenMap()
+    {
+        {
+            mapImage.SetActive(true);
+            magicIcon.SetActive(true);
+            videoPlayer.SetActive(false);
+            reasonBox.SetActive(false);
+            moreInfoButton.SetActive(false);
+            moreInfoBox.SetActive(false);
+        }
+    }
+
+    public void CloseMap()
+    {
+        {
+            mapImage.SetActive(false);
+            magicIcon.SetActive(false);
             videoPlayer.SetActive(false);
             reasonBox.SetActive(false);
             moreInfoButton.SetActive(true);
