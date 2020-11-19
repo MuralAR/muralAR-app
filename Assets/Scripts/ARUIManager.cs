@@ -19,17 +19,13 @@ public class ARUIManager : MonoBehaviour
     public GameObject moreInfoButton;
     public GameObject moreInfoBox;
 
+    public bool videoPlayerState;
     // Start is called before the first frame update
     void Start()
     {
         reasonBoxTMP = reasonBox.GetComponentInChildren<TMP_Text>();
         reasonBoxTMP.text = reasonBoxText;
-        videoPlayer.SetActive(true);
-        reasonBox.SetActive(true);
-        moreInfoButton.SetActive(false);
-        moreInfoBox.SetActive(false);
-        mapImage.SetActive(false);
-        magicIcon.SetActive(false);
+        ToggleVideoPlayer(true);
     }
 
     // Update is called once per frame
@@ -39,7 +35,8 @@ public class ARUIManager : MonoBehaviour
 
     public void ToggleVideoPlayer(bool turnOn)
     {
-        if (turnOn)
+        videoPlayerState = turnOn;
+        if (videoPlayerState)
         {
             videoPlayer.SetActive(true);
             reasonBox.SetActive(true);
