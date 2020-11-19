@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
-
+using TMPro;
 
 /**
 * x = 10.5916
@@ -17,6 +17,9 @@ using UnityEngine.XR.ARSubsystems;
 [RequireComponent(typeof(ARTrackedImageManager))]
 public class FixedTracker : MonoBehaviour
 {
+
+    public TMP_Text debugText;
+
     // Start is called before the first frame update
     public GameObject[] placeablePrefabs;
 
@@ -29,6 +32,7 @@ public class FixedTracker : MonoBehaviour
         foreach (GameObject prefab in placeablePrefabs)
         {
             GameObject newPrefab = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+            newPrefab.SetActive(false);
             newPrefab.name = prefab.name;
             spawnedPrefabs.Add(prefab.name, newPrefab);
         }
@@ -45,19 +49,45 @@ public class FixedTracker : MonoBehaviour
 
     private void ImageChanged(ARTrackedImagesChangedEventArgs eventArgs)
     {
+        debugText.text = "";
+        TrackingState totalTrackingState = TrackingState.None;
         foreach (ARTrackedImage trackedImage in eventArgs.added)
         {
-            aRUIManager.ToggleVideoPlayer(false);
+            debugText.text += "A-" + trackedImage.referenceImage.name + " : " + trackedImage.trackingState;
             UpdateImage(trackedImage);
         }
         foreach (ARTrackedImage trackedImage in eventArgs.updated)
         {
-            UpdateImage(trackedImage);
+            debugText.text += "U-" + trackedImage.referenceImage.name + " : " + trackedImage.trackingState + ", ";
+            if (trackedImage.trackingState == TrackingState.Tracking)
+            {
+                totalTrackingState = TrackingState.Tracking;
+                UpdateImage(trackedImage);
+            }
+            else
+            {
+                RemoveImage(trackedImage);
+            }
         }
         foreach (ARTrackedImage trackedImage in eventArgs.removed)
         {
-            spawnedPrefabs[trackedImage.name].SetActive(false);
-            aRUIManager.ToggleVideoPlayer(true);
+            debugText.text += "R-" + trackedImage.referenceImage.name + " : " + trackedImage.trackingState + ", ";
+            RemoveImage(trackedImage);
+        }
+
+        if (totalTrackingState == TrackingState.Tracking) // At least 1 image tracking
+        {
+            if (aRUIManager.videoPlayerState) // if the vidPlayer is on, turn it off
+            {
+                aRUIManager.ToggleVideoPlayer(false);
+            }
+        }
+        else // No image is tracking 
+        {
+            if (!aRUIManager.videoPlayerState) // if the vidPlayer is off, turn it on
+            {
+                aRUIManager.ToggleVideoPlayer(true);
+            }
         }
     }
 
@@ -79,5 +109,10 @@ public class FixedTracker : MonoBehaviour
                 go.SetActive(false);
             }
         }
+    }
+
+    private void RemoveImage(ARTrackedImage trackedImage)
+    {
+        spawnedPrefabs[trackedImage.referenceImage.name].SetActive(false);
     }
 }
