@@ -25,3 +25,13 @@ MonoBehaviour:
     m_SpecifySize: 1
     m_Name: king
     m_Texture: {fileID: 2800000, guid: 76d0565ff03a24e3d99f4267d84691c0, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5020767521400844562
+      m_GuidHigh: 16277473992766520981
+    m_SerializedTextureGuid:
+      m_GuidLow: 2163105110153080877
+      m_GuidHigh: 5612078716432809579
+    m_Size: {x: 0.5, y: 0.29683974}
+    m_SpecifySize: 1
+    m_Name: bridget
+    m_Texture: {fileID: 2800000, guid: 1681b02de4a31e046bfe81c8db1be24d, type: 3}
