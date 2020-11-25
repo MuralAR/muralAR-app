@@ -46,6 +46,7 @@ public class ARUIManager : MonoBehaviour
             videoPlayer.SetActive(true);
             reasonBox.SetActive(true);
             moreInfoButton.SetActive(false);
+            LeanTween.alpha(moreInfoButton.GetComponent<RectTransform>(), 0f, 0.3f);
             moreInfoBox.SetActive(false);
             mapImage.SetActive(false);
             magicIcon.SetActive(false);
@@ -56,6 +57,7 @@ public class ARUIManager : MonoBehaviour
             videoPlayer.SetActive(false);
             reasonBox.SetActive(false);
             moreInfoButton.SetActive(true);
+            LeanTween.alpha(moreInfoButton.GetComponent<RectTransform>(), 1f, 0.6f);
             moreInfoBox.SetActive(false);
             mapImage.SetActive(false);
             magicIcon.SetActive(false);
@@ -71,6 +73,7 @@ public class ARUIManager : MonoBehaviour
             videoPlayer.SetActive(false);
             reasonBox.SetActive(false);
             moreInfoButton.SetActive(false);
+            LeanTween.alpha(moreInfoButton.GetComponent<RectTransform>(), 0f, 0.3f);
             moreInfoBox.SetActive(false);
             distanceBox.SetActive(false);
         }
@@ -84,6 +87,7 @@ public class ARUIManager : MonoBehaviour
             videoPlayer.SetActive(false);
             reasonBox.SetActive(false);
             moreInfoButton.SetActive(true);
+            LeanTween.alpha(moreInfoButton.GetComponent<RectTransform>(), 1f, 0.6f);
             moreInfoBox.SetActive(false);
             distanceBox.SetActive(false);
         }
@@ -96,14 +100,22 @@ public class ARUIManager : MonoBehaviour
             videoPlayer.SetActive(false);
             reasonBox.SetActive(false);
             moreInfoButton.SetActive(false);
+            LeanTween.alpha(moreInfoButton.GetComponent<RectTransform>(), 0f, 0.3f);
             moreInfoBox.SetActive(true);
+            LeanTween.alpha(moreInfoBox.GetComponent<RectTransform>(), 1f, 0.6f);
+            LeanTween.scale(moreInfoBox, new Vector3(0.85f, 0.85f, 0.85f), 0.5f);
+            LeanTween.moveY(moreInfoBox.GetComponent<RectTransform>(), 0, 0.5f);
         }
         else
         {
             videoPlayer.SetActive(false);
             reasonBox.SetActive(false);
             moreInfoButton.SetActive(true);
-            moreInfoBox.SetActive(false);
+            LeanTween.alpha(moreInfoButton.GetComponent<RectTransform>(), 1f, 0.6f);
+            //moreInfoBox.SetActive(false);
+            LeanTween.alpha(moreInfoBox.GetComponent<RectTransform>(), 0f, 0.4f);
+            LeanTween.scale(moreInfoBox, new Vector3(0, 0, 0), 0.3f);
+            LeanTween.moveY(moreInfoBox.GetComponent<RectTransform>(), -700, 0.3f);
         }
     }
 
