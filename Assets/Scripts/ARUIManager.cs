@@ -130,12 +130,7 @@ public class ARUIManager : MonoBehaviour
             LeanTween.moveY(moreInfoBox.GetComponent<RectTransform>(), -700, 0.3f);
         }
     }
-    
-    private void CalculateDistance(string icon)
-    {
-        string distance = muralLocations[icon];
-        locationBoxTMP.text = distance;
-    }
+
 
     public void OnClickedIcon()
     {
@@ -144,32 +139,38 @@ public class ARUIManager : MonoBehaviour
             return;
         }
 
-        string thisPosition = EventSystem.current.currentSelectedGameObject.name;
-        distanceBox.GetComponent<Button>().onClick.AddListener(delegate { OnClickedMoreInfoMap(thisPosition); });
-        CalculateDistance(thisPosition);
+        string thisIcon = EventSystem.current.currentSelectedGameObject.name;
+        distanceBox.GetComponent<Button>().onClick.AddListener(delegate { OnClickedMoreInfoMap(thisIcon); });
+        locationBoxTMP.text = muralLocations[thisIcon];
         distanceBox.SetActive(true);
-        StartCoroutine(DistanceDelay());
+        StartCoroutine(DelayDeactivation());
     }
 
-    IEnumerator DistanceDelay()
+    IEnumerator DelayDeactivation()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
         distanceBox.SetActive(false);
-    }
-
-    public void OnClickedMap()
-    {
-        distanceBox.SetActive(false);
-        infoBox.SetActive(false);
     }
 
     private void OnClickedMoreInfoMap(String icon)
     {
         infoBox.SetActive(true);
+        LeanTween.scale(infoBox, new Vector3(0.1719052f, 0.1409813f, 0.31823f), 0.5f);
         distanceBox.SetActive(false);
         locationMoreInfoBoxTMP.text = muralInfo[icon];
     }
-    
+
+    public void OnClickedMap()
+    {
+        distanceBox.SetActive(false);
+        LeanTween.scale(infoBox, new Vector3(0, 0, 0), 0.5f).setOnComplete(DeactivateInfoBox);
+    }
+
+    void DeactivateInfoBox()
+    {
+        infoBox.SetActive(false);
+    }
+
     private void SetMuralDistance()
     {
         muralLocations.Add("icon1", "Mural 1. You are 206 meters away");
@@ -186,5 +187,4 @@ public class ARUIManager : MonoBehaviour
         muralInfo.Add("icon3",
             "ARTIST - achesdub \nThe Last King of Ireland  \nHailing from Dublin, Aches has been creating work since the age of fifteen. Boasting an impressive repertoire of work, he has been invited to design and create original artwork for projects in countries such as Denmark, Ireland, Hungary, Spain, Sweden, Miami, Scotland, Austria, Switzerland, England and USA.");
     }
-
 }
