@@ -173,8 +173,8 @@ public class ARUIManager : MonoBehaviour
 
     private void SetMuralDistance()
     {
-        muralLocations.Add("icon1", "Mural 1. You are 206 meters away");
-        muralLocations.Add("icon2", "Mural 2. You are 505 meters away");
+        muralLocations.Add("icon1", "Mural 1. You are 155 meters away");
+        muralLocations.Add("icon2", "Mural 2. You are 245 meters away");
         muralLocations.Add("icon3", "Mural 3. You are 648 meters away");
     }
 
