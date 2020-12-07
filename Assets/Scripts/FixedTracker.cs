@@ -59,7 +59,7 @@ public class FixedTracker : MonoBehaviour
         foreach (ARTrackedImage trackedImage in eventArgs.updated)
         {
             debugText.text += "U-" + trackedImage.referenceImage.name + " : " + trackedImage.trackingState + ", ";
-            if (trackedImage.trackingState == TrackingState.Tracking)
+            if (trackedImage.trackingState != TrackingState.None)
             {
                 totalTrackingState = TrackingState.Tracking;
                 UpdateImage(trackedImage);
