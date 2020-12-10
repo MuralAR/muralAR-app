@@ -15,6 +15,8 @@ public class ARUIManager : MonoBehaviour
     public GameObject reasonBox;
     public GameObject distanceBox;
     public GameObject infoBox;
+    public GameObject buttonForMoreInfo;
+    public GameObject buttonForLessInfo;
 
     public string reasonBoxText;
     private TMP_Text reasonBoxTMP;
@@ -121,6 +123,7 @@ public class ARUIManager : MonoBehaviour
         }
         else
         {
+            ExpandMoreInfo(false);
             videoPlayer.SetActive(false);
             reasonBox.SetActive(false);
             moreInfoButton.SetActive(true);
@@ -130,6 +133,27 @@ public class ARUIManager : MonoBehaviour
             LeanTween.scale(moreInfoBox, new Vector3(0, 0, 0), 0.3f);
             LeanTween.moveY(moreInfoBox.GetComponent<RectTransform>(), -700, 0.3f);
         }
+    }
+
+    public void ExpandMoreInfo(bool turnOn)
+    {
+        if (turnOn)
+        {
+            buttonForMoreInfo.SetActive(false);
+            buttonForLessInfo.SetActive(true);
+            LeanTween.value(moreInfoBox, updateExpandInfo, 900f, 2200f, 0.25f);
+        }
+        else
+        {
+            buttonForLessInfo.SetActive(false);
+            buttonForMoreInfo.SetActive(true);
+            LeanTween.value(moreInfoBox, updateExpandInfo, 2200f, 900f, 0.25f);
+        }
+    }
+
+    public void updateExpandInfo(float value)
+    {
+        moreInfoBox.GetComponent<RectTransform>().sizeDelta = new Vector2(0, value);
     }
 
 
