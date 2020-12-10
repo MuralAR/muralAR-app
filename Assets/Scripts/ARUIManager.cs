@@ -115,7 +115,8 @@ public class ARUIManager : MonoBehaviour
             LeanTween.alpha(moreInfoButton.GetComponent<RectTransform>(), 0f, 0.3f);
             moreInfoBox.SetActive(true);
             LeanTween.alpha(moreInfoBox.GetComponent<RectTransform>(), 1f, 0.6f);
-            LeanTween.scale(moreInfoBox, new Vector3(0.85f, 0.85f, 0.85f), 0.5f);
+            // LeanTween.scale(moreInfoBox, new Vector3(0.85f, 0.85f, 0.85f), 0.5f);
+            LeanTween.scale(moreInfoBox, new Vector3(1f, 1f, 1f), 0.5f);
             LeanTween.moveY(moreInfoBox.GetComponent<RectTransform>(), 0, 0.5f);
         }
         else
