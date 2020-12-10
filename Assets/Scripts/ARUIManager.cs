@@ -141,13 +141,19 @@ public class ARUIManager : MonoBehaviour
         {
             buttonForMoreInfo.SetActive(false);
             buttonForLessInfo.SetActive(true);
-            LeanTween.value(moreInfoBox, updateExpandInfo, 900f, 2200f, 0.25f);
+            if (Screen.width < Screen.height)
+                LeanTween.value(moreInfoBox, updateExpandInfo, 900f, 2200f, 0.25f);
+            else
+                LeanTween.value(moreInfoBox, updateExpandInfo, 900f, 1100f, 0.25f);
         }
         else
         {
             buttonForLessInfo.SetActive(false);
             buttonForMoreInfo.SetActive(true);
-            LeanTween.value(moreInfoBox, updateExpandInfo, 2200f, 900f, 0.25f);
+            if (Screen.width < Screen.height)
+                LeanTween.value(moreInfoBox, updateExpandInfo, 2200f, 900f, 0.25f);
+            else
+                LeanTween.value(moreInfoBox, updateExpandInfo, 1100f, 900f, 0.25f);
         }
     }
 
