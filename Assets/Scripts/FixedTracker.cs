@@ -80,6 +80,7 @@ public class FixedTracker : MonoBehaviour
             if (aRUIManager.videoPlayerState) // if the vidPlayer is on, turn it off
             {
                 aRUIManager.ToggleVideoPlayer(false);
+                Handheld.Vibrate();
             }
         }
         else // No image is tracking 
