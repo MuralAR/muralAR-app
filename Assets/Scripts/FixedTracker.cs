@@ -18,7 +18,7 @@ using TMPro;
 public class FixedTracker : MonoBehaviour
 {
 
-    public TMP_Text debugText;
+    // public TMP_Text debugText;
 
     // Start is called before the first frame update
     public GameObject[] placeablePrefabs;
@@ -49,16 +49,16 @@ public class FixedTracker : MonoBehaviour
 
     private void ImageChanged(ARTrackedImagesChangedEventArgs eventArgs)
     {
-        debugText.text = "";
+        // debugText.text = "";
         TrackingState totalTrackingState = TrackingState.None;
         foreach (ARTrackedImage trackedImage in eventArgs.added)
         {
-            debugText.text += "A-" + trackedImage.referenceImage.name + " : " + trackedImage.trackingState;
+            // debugText.text += "A-" + trackedImage.referenceImage.name + " : " + trackedImage.trackingState;
             UpdateImage(trackedImage);
         }
         foreach (ARTrackedImage trackedImage in eventArgs.updated)
         {
-            debugText.text += "U-" + trackedImage.referenceImage.name + " : " + trackedImage.trackingState + ", ";
+            // debugText.text += "U-" + trackedImage.referenceImage.name + " : " + trackedImage.trackingState + ", ";
             if (trackedImage.trackingState != TrackingState.None)
             {
                 totalTrackingState = TrackingState.Tracking;
@@ -71,7 +71,7 @@ public class FixedTracker : MonoBehaviour
         }
         foreach (ARTrackedImage trackedImage in eventArgs.removed)
         {
-            debugText.text += "R-" + trackedImage.referenceImage.name + " : " + trackedImage.trackingState + ", ";
+            // debugText.text += "R-" + trackedImage.referenceImage.name + " : " + trackedImage.trackingState + ", ";
             RemoveImage(trackedImage);
         }
 
